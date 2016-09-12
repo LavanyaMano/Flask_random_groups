@@ -2,7 +2,9 @@ import random
 import os
 import copy
 import json
+from os import path
 from sys import argv
+
 
 class RandomGroups:
     def __init__(self, number_per_group=2):
@@ -23,7 +25,9 @@ class RandomGroups:
         self.set_group()
 
     def set_adjectives(self):
-        with open('adjectives.txt') as inputAdjectives:
+        filepath1 = path.join(path.dirname(__file__),
+        "../data/adjectives.txt")
+        with open(filepath1) as inputAdjectives:
             self.adjectives = inputAdjectives
             """ Strip Off Newlines"""
             self.adjectives = [line.rstrip('\n').split(',') for line in self.adjectives]
@@ -31,7 +35,10 @@ class RandomGroups:
             self.adjectives = [item for sublist in self.adjectives for item in sublist ]
 
     def set_nouns(self):
-        with open('nouns.txt') as inputNouns:
+        filepath2= path.join(path.dirname(__file__),
+        "../data/nouns.txt")
+
+        with open(filepath2) as inputNouns:
             self.nouns = inputNouns
             """ Strip Off Newlines"""
             self.nouns = [line.rstrip('\n').split(',') for line in self.nouns]
@@ -39,8 +46,15 @@ class RandomGroups:
             self.nouns = [item for sublist in self.nouns for item in sublist ]
 
     def set_students(self):
-        with open('students.json', 'r') as f:
+        filepath3=path.join(path.dirname(__file__),
+        "../data/students.json")
+        with open(filepath3, 'r') as f:
             self.students = json.load(f)
+
+
+
+
+
 
     def set_group(self):
         """ Main function to gather the groups """
@@ -111,3 +125,5 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+
