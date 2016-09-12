@@ -2,15 +2,11 @@
 
 {% block content %}
     <div class="well">
-        1.{{random_group[0]}}
-        <br>
-        2.{{random_group[1]}}
-        <br>
-        3.{{random_group[2]}}
-        <br>
-        4.{{random_group[3]}}
-        <br>
-        5.{{random_group[4]}}
+        <ol>
+          {% for user in random_group %}
+            <li>{{user}}</li>
+          {% endfor %}
+        </ol>
     </div>
     <a href="{{url_for('index')}}"
         class = "btn btn-primary btn-lg btn-block">
